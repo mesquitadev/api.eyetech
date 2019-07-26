@@ -1,2 +1,2 @@
 'use strict';
-require('./src/server');
+require('./bin/server');
