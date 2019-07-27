@@ -9,6 +9,9 @@ const app = express();
 //Conectando ao banco
 mongoose.connect('mongodb://localhost:27017/eyetech', { useNewUrlParser : true });
 
+// Carega os Models
+const Product = require('./models/product');
+
 // Carrega as Rotas
 const indexRoutes = require('./routes/indexRoutes'); 
 const productRoutes = require('./routes/productRoutes'); 
