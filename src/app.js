@@ -2,9 +2,12 @@
 // Dependências do projeto
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // Instância do Express
 const app = express();
+//Conectando ao banco
+mongoose.connect('mongodb://localhost:27017/eyetech', { useNewUrlParser : true });
 
 // Carrega as Rotas
 const indexRoutes = require('./routes/indexRoutes'); 
@@ -18,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-// Definindo Uso das Rotas acima
+// Definindo Uso das Rotas 
 app.use('/', indexRoutes);
 app.use('/products', productRoutes); 
 
