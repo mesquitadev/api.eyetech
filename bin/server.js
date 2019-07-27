@@ -18,7 +18,10 @@ server.listen(port);
 server.on('error', onError);
 // Verifica o debug para ver erros da aplicação no evento listening
 server.on('listening', onListening);
-console.log('Api Rodando na porta ' + port);
+console.log('#############################################')
+console.log('\t    EyeTech EyeOS')
+console.log('\tApi Rodando na porta ' + port);
+console.log('#############################################')
 
 
 /** 
