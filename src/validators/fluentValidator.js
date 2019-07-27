@@ -41,6 +41,13 @@ ValidationContract.prototype.isEmail = (value, message) => {
     }
 }
 
+ValidationContract.prototype.isGreaterThan = (value, message) => {
+    var reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+    if(!reg.test(value)) {
+        errors.push({ message : message });
+    }
+}
+
 ValidationContract.prototype.errors = () => {
     return errors;
 }
