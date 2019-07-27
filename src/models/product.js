@@ -5,33 +5,33 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     title : {
         type : String,
-        required : true,
+        required : [true, 'O campo Título é requerido!'],
         trim: true
     },
     slug : {
         type : String,
-        required : true,
+        required : [true, 'O campo Slug é requerido!'],
         trim : true,
         index : true,
         unique : true
     },
     description : {
         type : String,
-        required : true,
+        required : [true, 'O campo descrição é requerido!'],
         trim : true
     },
     price : {
         type : Number,
-        required : true
+        required : [true, 'O campo preço é requerido!']
     },
     active : {
         type : Boolean,
-        required :true,
+        required : [true, 'O campo ativo é requerido'],
         default : true
     },
     tags : [{
         type : String,
-        required : true
+        required : [true, 'O campo tags é requerido']
     }]
 });
 
