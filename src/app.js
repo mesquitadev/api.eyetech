@@ -16,7 +16,9 @@ const Order = require('./models/order');
 
 // Carrega as Rotas
 const indexRoutes = require('./routes/indexRoutes'); 
-const productRoutes = require('./routes/productRoutes'); 
+const productRoutes = require('./routes/productRoutes');
+const customerRoutes = require('./routes/customerRoute') 
+const orderRoutes = require('./routes/orderRoute') 
 
 // Traduz o conteúdo da request para json 
 app.use(bodyParser.json());
@@ -29,5 +31,7 @@ app.use(bodyParser.urlencoded({
 // Definindo Uso das Rotas 
 app.use('/', indexRoutes);
 app.use('/products', productRoutes); 
+app.use('/customers', customerRoutes);
+app.use('/orders', orderRoutes);
 
 module.exports = app;
