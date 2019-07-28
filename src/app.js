@@ -11,6 +11,8 @@ mongoose.connect('mongodb://localhost:27017/eyetech', { useNewUrlParser : true }
 
 // Carega os Models
 const Product = require('./models/product');
+const Customer = require('./models/customer');
+const Order = require('./models/order');
 
 // Carrega as Rotas
 const indexRoutes = require('./routes/indexRoutes'); 
