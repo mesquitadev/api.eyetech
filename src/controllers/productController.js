@@ -78,11 +78,9 @@ exports.post = (req, res, next) => {
         res.status(400).send(contract.errors()).end();
         return;
     }
-    // Instância do Modelo, com os parâmetros da request
-    var product = new Product(req.body);
-    // product.title = req.body.title;
-    // Salva no Banco Mongoose
-    product.save().then( x =>{
+    // Dados Vindo do Repository
+    repository.create(req.body)
+    .then( x =>{
         res.status(201).send({
             message : 'Produto cadastrado com sucesso!'
         });
@@ -100,13 +98,7 @@ exports.post = (req, res, next) => {
  * Função que Atualiza os dados do produto no Banco
  */
 exports.put = (req, res, next) => {
-    Product.findByIdAndUpdate(req.params.id, {
-        $set : {
-            title : req.body.title,
-            description : req.body.description,
-            price : req.body.price
-        }
-    }).then(x => {
+    repository.update(req.params.id, req.body).then(x => {
         res.status(201).send({
             message : 'Produto atualizado com sucesso!'
         });
@@ -124,7 +116,7 @@ exports.put = (req, res, next) => {
  * Função que Deleta o produto do Banco
  */
 exports.delete = (req, res, next) => {
-    Product.findOneAndRemove(req.body.id)
+    repository.delete(req.body.id)
     .then(x => {
         res.status(201).send({
             message : 'Produto removido com sucesso!'
