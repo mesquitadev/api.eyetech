@@ -2,24 +2,33 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluentValidator');
+const repository = require('../repositories/productRepository');
+
+/**
+ * @author : Victor Mesquita
+ * @name : get
+ * @type : Get All items 
+ * Pega todos os produtos do banco de dados
+ */
 exports.get = (req, res, next) => {
-    Product.find({ active : true }, 'title price slug').then(data=>{
+    //Os dados vem do repository
+    repository.get()
+    .then(data=>{
         res.status(200).send(data);
     }).catch(e=>{
         res.status(400).send(e);
     });
 }
+
 /**
  * @name : getBySlug
  * @author : Victor Mesquita 
  * Busca no Registro pelo Slug do produto
  */
 exports.getBySlug = (req, res, next) => {
-    Product.findOne({ 
-        slug : req.params.slug,
-        active : true 
-    }, 'title price slug tags'
-    ).then(data=>{
+    //Paâmetro 
+    repository.getBySlug(req.params.slug)
+    .then(data=>{
         res.status(200).send(data);
     }).catch(e=>{
         res.status(400).send(e);
@@ -32,7 +41,8 @@ exports.getBySlug = (req, res, next) => {
  * Busca no Registro pelo ID do produto
  */
 exports.getById = (req, res, next) => {
-    Product.findById(req.params.id).then(data=>{
+    repository.getById(req.params.id)
+    .then(data=>{
         res.status(200).send(data);
     }).catch(e=>{
         res.status(400).send(e);
@@ -45,9 +55,8 @@ exports.getById = (req, res, next) => {
  * Busca no Registro pela tag do produto
  */
 exports.getByTag = (req, res, next) => {
-    Product.find({
-        tags : req.params.tag
-    }, 'title description price slug tags').then(data=>{
+    repository.getByTag(req.params.tag)
+    .then(data=>{
         res.status(200).send(data);
     }).catch(e=>{
         res.status(400).send(e);
